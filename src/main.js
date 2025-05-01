@@ -23,10 +23,11 @@ loader.load("https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/moonlit_golf_1
     }
 );
 
-const radius = 1.3;
+const radius = [1.3, 1.2, 1.16, 1.5];
+// const radius = 1.3;
 const segments = 64;
 const orbitRadius = 4.5;
-const textures = ["./csilla/color.png", "./earth/map.jpg", "./venus/map.jpg", "./volcanic/color.png"];
+const textures = ["./neptune/map.jpg", "./earth/map.jpg", "./venus/map.jpg", "./jupiter/map.jpg"];
 const spheres = new THREE.Group();
 
 
@@ -47,7 +48,7 @@ for (let i = 0; i < 4; i++) {
     const texture = textureLoader.load(textures[i]);
     texture.colorSpace = THREE.SRGBColorSpace;
 
-    const geometry = new THREE.SphereGeometry(radius, segments, segments);
+    const geometry = new THREE.SphereGeometry(radius[i], segments, segments);
     const material = new THREE.MeshStandardMaterial({ map: texture });
     const sphere = new THREE.Mesh(geometry, material);
     sphereMesh.push(sphere);
@@ -74,7 +75,14 @@ function throttleWheelHandler(event) {
         lastWheelTime = currentTime;
         scrollCount = (scrollCount + 1) % 4;
         const headings = document.querySelectorAll("h1");
+        const paragraphs = document.querySelectorAll("p");
         gsap.to(headings, {
+            duration: 1,
+            y: `-=${100}%`,
+            ease: "power2.inOut",
+        });
+
+        gsap.to(paragraphs, {
             duration: 1,
             y: `-=${100}%`,
             ease: "power2.inOut",
@@ -88,6 +96,12 @@ function throttleWheelHandler(event) {
 
         if (scrollCount === 0) {
             gsap.to(headings, {
+                duration: 1,
+                y: `0`,
+                ease: "power2.inOut",
+            });
+
+            gsap.to(paragraphs, {
                 duration: 1,
                 y: `0`,
                 ease: "power2.inOut",
