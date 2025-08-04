@@ -1,4 +1,3 @@
-import "./style.css";
 import * as THREE from "three";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import gsap from "gsap";
@@ -65,52 +64,48 @@ scene.add(spheres);
 
 camera.position.z = 9;
 
-let lastWheelTime = 0;
-const throttleDelay = 2000; 
-let scrollCount = 0;
+let currentIndex = 0;
 
-function throttleWheelHandler(event) {
-    const currentTime = Date.now();
-    if (currentTime - lastWheelTime >= throttleDelay) {
-        lastWheelTime = currentTime;
-        scrollCount = (scrollCount + 1) % 4;
-        const headings = document.querySelectorAll("h1");
-        const paragraphs = document.querySelectorAll("p");
+function rotateDisplay() {
+    currentIndex = (currentIndex + 1) % 4;
+    const headings = document.querySelector(".home").querySelectorAll("h1");
+    const paragraphs = document.querySelector(".home").querySelectorAll("p");
+    
+    gsap.to(headings, {
+        duration: 1,
+        y: `-=${100}%`,
+        ease: "power2.inOut",
+    });
+
+    gsap.to(paragraphs, {
+        duration: 1,
+        y: `-=${100}%`,
+        ease: "power2.inOut",
+    });
+
+    gsap.to(spheres.rotation, {
+        duration: 1,
+        y: `-=${Math.PI/2}`,
+        ease: "power2.inOut",
+    });
+
+    if (currentIndex === 0) {
         gsap.to(headings, {
             duration: 1,
-            y: `-=${100}%`,
+            y: `0`,
             ease: "power2.inOut",
         });
 
         gsap.to(paragraphs, {
             duration: 1,
-            y: `-=${100}%`,
+            y: `0`,
             ease: "power2.inOut",
         });
-
-        gsap.to(spheres.rotation, {
-            duration: 1,
-            y: `-=${Math.PI/2}`,
-            ease: "power2.inOut",
-        });
-
-        if (scrollCount === 0) {
-            gsap.to(headings, {
-                duration: 1,
-                y: `0`,
-                ease: "power2.inOut",
-            });
-
-            gsap.to(paragraphs, {
-                duration: 1,
-                y: `0`,
-                ease: "power2.inOut",
-            });
-        }
     }
 }
 
-window.addEventListener('wheel', throttleWheelHandler);
+// Run rotation every 2 seconds
+setInterval(rotateDisplay, 5000);
 
 // Animation loop
 const clock = new THREE.Clock();

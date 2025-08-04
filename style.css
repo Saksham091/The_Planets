@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: black;
+}
+
+.about {
+    background-image: url(./public/stars.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

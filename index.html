@@ -1,40 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
-  <div class="w-full h-screen overflow-hidden">
-    <div class="w-full h-screen absolute top-0 left-0 z-[2] text-white font-[Helvetica Now Display]">
-      <nav class="w-full flex justify-between items-center py-5 px-10">
-        <h3>Planets</h3>
-        <div class="flex gap-6">
-          <a class="text-sm" href="#">Home</a>
-          <a class="text-sm" href="#">About</a>
-          <a class="text-sm" href="#">Contact</a>
+  <section class=" home w-full h-screen overflow-hidden">
+    <div class="w-full h-screen overflow-hidden">
+      <div class="w-full h-screen absolute top-0 left-0 z-[2] text-white font-[Helvetica Now Display]">
+        <nav class="w-full flex justify-between items-center py-5 px-10">
+          <h3>Planets</h3>
+          <div class="flex gap-6">
+            <a class="text-sm" href="#">Home</a>
+            <a class="text-sm" href="#">About</a>
+            <a class="text-sm" href="#">Contact</a>
+          </div>
+        </nav>
+        <div class="absolute top-[11%] left-1/2 -translate-x-1/2 text-center font-[Bellina]">
+          <div class="w-full h-[5em] md:h-[6em] overflow-hidden">
+            <h1 class="h-full text-7xl md:text-8xl font-light tracking-tighter">Earth</h1>
+            <h1 class="h-full text-7xl md:text-8xl font-light tracking-tighter">Neptune</h1>
+            <h1 class="h-full text-7xl md:text-8xl font-light tracking-tighter">Jupiter</h1>
+            <h1 class="h-full text-7xl md:text-8xl font-light tracking-tighter">Venus</h1>
+          </div>
+          <div class="w-full h-[5em] md:h-[6em] mt-1 overflow-hidden">
+            <p class="h-full text-sm font-[Gilroy]">Earth is the only planet we know that has life on it.</p>
+            <p class="h-full text-sm font-[Gilroy]">Neptune is a cold, windy planet far from the Sun.</p>
+            <p class="h-full text-sm font-[Gilroy]">Jupiter is the biggest planet with many moons around it.</p>
+            <p class="h-full text-sm font-[Gilroy]">Venus is a hot, rocky planet with thick clouds around it.</p>
+          </div>
+          <div class="w-96 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent absolute top-[8em]"></div>
         </div>
-      </nav>
-      <div class="absolute top-[11%] left-1/2 -translate-x-1/2 text-center font-[Bellina]">
-        <div class="w-full h-[5em] md:h-[6em] overflow-hidden">
-          <h1 class="h-full text-7xl md:text-8xl font-light tracking-tighter">Earth</h1>
-          <h1 class="h-full text-7xl md:text-8xl font-light tracking-tighter">Neptune</h1>
-          <h1 class="h-full text-7xl md:text-8xl font-light tracking-tighter">Jupiter</h1>
-          <h1 class="h-full text-7xl md:text-8xl font-light tracking-tighter">Venus</h1>
-        </div>
-        <div class="w-full h-[5em] md:h-[6em] mt-1 overflow-hidden">
-          <p class="h-full text-sm font-[Gilroy]">Earth is the only planet we know that has life on it.</p>
-          <p class="h-full text-sm font-[Gilroy]">Neptune is a cold, windy planet far from the Sun.</p>
-          <p class="h-full text-sm font-[Gilroy]">Jupiter is the biggest planet with many moons around it.</p>
-          <p class="h-full text-sm font-[Gilroy]">Venus is a hot, rocky planet with thick clouds around it.</p>
-        </div>
-        <div class="w-96 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent absolute top-[8em]"></div>
       </div>
+      <canvas id="canvas"></canvas>
     </div>
-    <canvas id="canvas"></canvas>
-  </div>
-  <script type="module" src="src/main.js"></script>  
+    <script type="module" src="src/home.js"></script>
+  </section>
+  <section class="about relative w-full h-screen text-white bg-gray-900 overflow-hidden">
+    <!-- Canvas in background -->
+    <canvas id="canvas" class="absolute top-0 left-0 w-full h-full z-[1]"></canvas>
+  
+    <!-- Text content on top -->
+    <div class="absolute top-20 left-0 w-full h-full z-[2] px-10 py-10 flex flex-col items-end">
+      <h2 class="text-3xl w-[53%] text-center font-bold mb-4">About the Project</h2>
+      <p class="w-full text-center leading-relaxed max-w-3xl">
+        This interactive 3D experience showcases planetary information using Three.js, WebGL, and Tailwind.
+        You can scroll to view different planets and their fun facts.
+      </p>
+    </div>
+  
+    <!-- JS script -->
+    <script type="module" src="src/about.js"></script>
+  </section>
 </body>
+
 </html>
